@@ -23,11 +23,16 @@ class Detector():
     
     def detect(self,img):
         # Detect
+        '''
         _ , detections = self.detector.detectCustomObjectsFromImage(input_type = "array",
                                                                     input_image= img,
                                                                     output_type = "array",
                                                                     custom_objects=self.custom_objects,
                                                                     minimum_percentage_probability=80)
+        '''
+        _ , detections = self.detector.detectCustomObjectsFromImage(input_image= img,
+                                                                    custom_objects=self.custom_objects,
+                                                                    minimum_percentage_probability=80)        
         bounding_boxes=[]
         for d in detections:
             bounding_boxes.append(d['box_points'])
@@ -39,10 +44,11 @@ if __name__ == '__main__':
     dogdetector=Detector()
     print("Initialization Time: ", time.time()-t1)
     #image_frame='test1.jpg'
-    image_frame = np.array(cv2.imread('test1.jpg'))
+    image_frame = np.array(cv2.imread('test2.jpg'))
     print(np.shape(image_frame))
     result='result.png'
     t1=time.time()
-    detected_boxes=dogdetector.detect(img=image_frame)
+    #detected_boxes=dogdetector.detect(img=image_frame)
+    detected_boxes=dogdetector.detect(img="test2.jpg")
     print("Inference Time: ", time.time()-t1)
     print(len(detected_boxes),"dogs detected at:", detected_boxes)
