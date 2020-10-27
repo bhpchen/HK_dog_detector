@@ -1,0 +1,3 @@
+[submodule "NetworkCameraReader"]
+	path = NetworkCameraReader
+	url = https://github.com/frederictwc/NetworkCameraReader.git
